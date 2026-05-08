@@ -17,7 +17,6 @@ body {
     font-style: italic;
 }
 
-
 .button {
     position: relative;
     display: inline-block;
@@ -34,7 +33,6 @@ body {
     transition: all 0.2s ease-in-out;
     cursor: pointer;
 }
-
 .button:hover {
     transform: translateY(-2px);
     box-shadow: 0px 6px 0px darkgreen;
