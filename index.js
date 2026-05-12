@@ -7,7 +7,16 @@ let cards = []
 let messageEl = document.getElementById("message-el")
 let sumEl = document.getElementById("sum-el")
 let cardEl = document.querySelector('#card-el')
+let playerEl = document.getElementById('player-el')
 
+
+let player = {
+    name: "Per",
+    chips: "145"
+}
+
+
+playerEl.textContent = player.name + ": $" + player.chips
 
 function getRandomCard() {
     let randomNumber = Math.floor(Math.random() * 13) + 1
@@ -29,12 +38,14 @@ function startGame() {
 }
 
 function renderGame() {
-    sumEl.textContent = 'Somme: ' + sum
+
     cardEl.textContent = "Cartes: "
     for (let i = 0; i < cards.length; i++) {
-        cardEl.textContent = "Cartes :" + cards + " "
+        cardEl.textContent += cards[i] + " "
     }
 
+
+    sumEl.textContent = 'Somme: ' + sum
     if (sum <= 20) {
         message = "Voulez-vous tirer une nouvelle carte ?"
     } else if (sum === 21) {
@@ -48,11 +59,12 @@ function renderGame() {
 }
 
 function newCard() {
-
-    let card = getRandomCard()
-    sum += card
-    cards.push(card)
-    startGame()
-    console.log(cards)
+    // Only allow the player to get a new card if she IS alive and does NOT have Blackjack
+    if (isAlive === true && hasBlackJack === false) {
+        let card = getRandomCard()
+        sum += card
+        cards.push(card)
+        renderGame()
+    }
 
 }
